@@ -24,6 +24,12 @@ defmodule Hello.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
+  scope "/manage", Hello do
+    pipe_through [:browser, :authenticate_user]
+
+    resources "/videos", VideoController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Hello do
   #   pipe_through :api

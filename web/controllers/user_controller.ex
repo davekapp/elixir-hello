@@ -1,6 +1,6 @@
 defmodule Hello.UserController do
   use Hello.Web, :controller
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate_user when action in [:index, :show]
   alias Hello.User
 
   def new(conn, _params) do
@@ -29,16 +29,5 @@ defmodule Hello.UserController do
   def show(conn, %{"id" => id}) do
     user = Repo.get(Hello.User, id)
     render conn, "show.html", user: user
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You aren't logged in!")
-      |> redirect(to: page_path(conn, :index))
-      |> halt()
-    end
   end
 end

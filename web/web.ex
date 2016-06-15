@@ -36,6 +36,7 @@ defmodule Hello.Web do
 
       import Hello.Router.Helpers
       import Hello.Gettext
+      import Hello.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -58,6 +59,8 @@ defmodule Hello.Web do
   def router do
     quote do
       use Phoenix.Router
+
+      import Hello.Auth, only: [authenticate_user: 2]
     end
   end
 

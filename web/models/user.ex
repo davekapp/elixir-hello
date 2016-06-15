@@ -8,6 +8,8 @@ defmodule Hello.User do
     field :password, :string, virtual: true
     field :password_hash, :string
 
+    has_many :videos, Hello.Video
+
     timestamps
   end
 
