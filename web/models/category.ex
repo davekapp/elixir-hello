@@ -1,18 +1,14 @@
-defmodule Hello.Video do
+defmodule Hello.Category do
   use Hello.Web, :model
 
-  schema "videos" do
-    field :url, :string
-    field :title, :string
-    field :description, :string
-    belongs_to :user, Hello.User
-    belongs_to :category, Hello.Category
+  schema "categories" do
+    field :name, :string
 
     timestamps
   end
 
-  @required_fields ~w(url title description)
-  @optional_fields ~w(category_id)
+  @required_fields ~w(name)
+  @optional_fields ~w()
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -23,6 +19,13 @@ defmodule Hello.Video do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> assoc_constraint(:category)
+  end
+
+  def alphabetical(query) do
+    from c in query, order_by: c.name
+  end
+
+  def names_and_ids(query) do
+    from c in query, select: {c.name, c.id}
   end
 end

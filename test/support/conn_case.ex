@@ -26,6 +26,7 @@ defmodule Hello.ConnCase do
       import Ecto.Query, only: [from: 1, from: 2]
 
       import Hello.Router.Helpers
+      import Hello.TestHelpers
 
       # The default endpoint for testing
       @endpoint Hello.Endpoint

@@ -13,6 +13,8 @@ defmodule Hello do
       supervisor(Hello.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Hello.Worker, [arg1, arg2, arg3]),
+      worker(Hello.Counter, [5]),
+      supervisor(Hello.InfoSys.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
